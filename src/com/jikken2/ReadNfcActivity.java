@@ -14,37 +14,75 @@ public class ReadNfcActivity extends ActionBarActivity {
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		//ƒX[ƒp[ƒNƒ‰ƒX‚ÌonCreateƒƒ\ƒbƒhŒÄ‚Ño‚µ
+		//�X�[�p�[�N���X��onCreate���\�b�h�Ăяo��
 		super.onCreate(savedInstanceState);
-		//ƒŒƒCƒAƒEƒgÝ’èƒtƒ@ƒCƒ‹‚ÌŽw’è
+		//���C�A�E�g�ݒ�t�@�C���̎w��
 		setContentView(R.layout.activity_read_nfc);
 		
-        // NFC‚ðˆµ‚¤‚½‚ß‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ðŽæ“¾
+        // NFC���������߂̃C���X�^���X���擾
         nfcAdapter = NfcAdapter.getDefaultAdapter(this);
-        // NFC‚ª“‹Ú‚³‚ê‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+        // NFC�����ڂ���Ă��邩�`�F�b�N
         if (nfcAdapter != null) {
-            // NFC‹@”\‚ª—LŒø‚É‚È‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+            // NFC�@�\���L���ɂȂ��Ă��邩�`�F�b�N
             if (!nfcAdapter.isEnabled()) {
-                // NFC‹@”\‚ª–³Œø‚Ìê‡‚Íƒ†[ƒU[‚Ö’Ê’m
+                // NFC�@�\�������̏ꍇ�̓��[�U�[�֒ʒm
                 Toast.makeText(getApplicationContext(),
-                        "NFC‹@”\‚ª—LŒø‚É‚È‚Á‚Ä‚¢‚Ü‚¹‚ñ",
+                        "NFC�@�\���L���ɂȂ��Ă��܂���",
                         Toast.LENGTH_SHORT).show();
             }
         }
         else {
-            // NFC”ñ“‹Ú‚Ìê‡‚Íƒ†[ƒU[‚Ö’Ê’m
+            // NFC�񓋍ڂ̏ꍇ�̓��[�U�[�֒ʒm
             Toast.makeText(getApplicationContext(),
-                    "NFC‹@”\‚ª”ñ“‹Ú‚Å‚·", Toast.LENGTH_SHORT)
+                    "NFC�@�\���񓋍ڂł�", Toast.LENGTH_SHORT)
                     .show();
         }
 	}
+
+	@Override
+    protected void onResume() {
+        super.onResume();
+        if (nfcAdapter != null) {
+            // �N������Activity���D��I��NFC���󂯎���悤�ݒ�
+            Intent intent = new Intent(this, this.getClass())
+                    .setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            PendingIntent pendingIntent = PendingIntent.getActivity(
+                    getApplicationContext(), 0, intent, 0);
+            nfcAdapter.enableForegroundDispatch(this, pendingIntent, null,
+                    null);
+        }
+    }
 	
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (nfcAdapter != null) {
+            // Activity����\���ɂȂ�ۂɗD��I��NFC���󂯎��ݒ������
+            nfcAdapter.disableForegroundDispatch(this);
+        }
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        String action = intent.getAction();
+        if (NfcAdapter.ACTION_NDEF_DISCOVERED.equals(action)
+                || NfcAdapter.ACTION_TAG_DISCOVERED.equals(action)
+                || NfcAdapter.ACTION_TECH_DISCOVERED.equals(action)) {
+
+            // IDm���擾
+            byte[] idm = intent.getByteArrayExtra(NfcAdapter.EXTRA_ID);
+            Toast.makeText(getApplicationContext(),
+                    getIdm(idm), Toast.LENGTH_SHORT)
+                    .show();
+        }
+    }
+    
 	/**
-	 * byteŒ^•Ï”‚ðStringŒ^‚Ì•¶Žš—ñ‚É•ÏŠ·‚·‚é
-	 * @param idm byteŒ^‚Ìidm•Ï”
-	 * @return StringŒ^‚Ìidm•¶Žš—ñ
+	 * byte�^�ϐ���String�^�̕�����ɕϊ�����
+	 * @param idm byte�^��idm�ϐ�
+	 * @return String�^��idm������
 	 */
-	@SuppressLint("InlinedApi")
 	private String getIdm(byte[] idm) {
 		String buf = null;
 		StringBuffer idmByte = new StringBuffer();
