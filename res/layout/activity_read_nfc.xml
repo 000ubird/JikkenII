@@ -8,12 +8,23 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.jikken2.ReadNfcActivity$PlaceholderFragment" >
 
-    <TextView
+    <ProgressBar
+        android:id="@+id/read_nfc_progressBar1"
+        style="?android:attr/progressBarStyleLarge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="196dp"
-        android:text="@string/hello_world" />
+        android:layout_marginTop="162dp" />
+
+    <TextView
+        android:id="@+id/read_nfc_textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="78dp"
+        android:text="@string/nfc_read_plz_touch_nfc"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
 </RelativeLayout>
