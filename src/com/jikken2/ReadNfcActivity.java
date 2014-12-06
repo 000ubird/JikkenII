@@ -1,10 +1,13 @@
 package com.jikken2;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.app.PendingIntent;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.nfc.NfcAdapter;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.v7.app.ActionBarActivity;
 import android.widget.Toast;
 
@@ -25,16 +28,32 @@ public class ReadNfcActivity extends ActionBarActivity {
         if (nfcAdapter != null) {
             // NFC機能が有効になっているかチェック
             if (!nfcAdapter.isEnabled()) {
-                // NFC機能が無効の場合はユーザーへ通知
-                Toast.makeText(getApplicationContext(),
-                        "NFC機能が有効になっていません",
-                        Toast.LENGTH_SHORT).show();
+                // NFC機能が無効の場合はダイヤログでユーザーへ通知
+                new AlertDialog.Builder(ReadNfcActivity.this)
+                .setTitle("NFC機能が有効になっていません\n設定画面に移行しますか？")
+                .setPositiveButton(
+                	"はい", 
+                	new DialogInterface.OnClickListener() {
+                	@Override
+                	//はいがクリックされたら設定画面に遷移する
+                	public void onClick(DialogInterface dialog, int which) {
+                		startActivity(new Intent().setAction(Settings.ACTION_NFC_SETTINGS));
+                	}
+                })
+                .setNegativeButton(
+                	"いいえ", 
+                	new DialogInterface.OnClickListener() {
+                	@Override
+                	public void onClick(DialogInterface dialog, int which) {  
+                	}
+                })
+                .show();
             }
         }
         else {
             // NFC非搭載の場合はユーザーへ通知
             Toast.makeText(getApplicationContext(),
-                    "NFC機能が非搭載です", Toast.LENGTH_SHORT)
+                    "この端末はNFC機能が非搭載です", Toast.LENGTH_SHORT)
                     .show();
         }
 	}
