@@ -103,9 +103,11 @@ public class ReadNfcActivity extends ActionBarActivity {
 
             // IDmを取得
             byte[] idm = intent.getByteArrayExtra(NfcAdapter.EXTRA_ID);
-            Toast.makeText(getApplicationContext(),
-                    getIdm(idm), Toast.LENGTH_SHORT)
-                    .show();
+            //IDm文字列をデータベースとのコネクションを行うアクティビティに渡して遷移
+            Intent i = new Intent(ReadNfcActivity.this,ConnectionActivity.class);
+            String id =  getIdm(idm);
+            i.putExtra("ID",id);
+            startActivity(i);
         }
     }
     
