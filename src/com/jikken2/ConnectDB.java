@@ -4,15 +4,16 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
-
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.AsyncTask;
-import android.widget.TextView;
 
+@SuppressLint("NewApi")
 public class ConnectDB extends AsyncTask<Void, Void, String> {
 	private static String URL = "jdbc:mysql://172.29.139.104/db_group_a";
 	private static String USER = "group_a";
 	private static String PASS = "m4we6baq";
+	private static int TIMEOUT = 5;
 	Activity act = null;
 
 	/**
@@ -35,6 +36,8 @@ public class ConnectDB extends AsyncTask<Void, Void, String> {
 		try {
 			//JDBCドライバのロード
 			Class.forName("com.mysql.jdbc.Driver");
+			//タイムアウト設定
+			DriverManager.setLoginTimeout(TIMEOUT);
 			//データベースに接続
 			Connection con = DriverManager.getConnection(URL,USER,PASS);
 			ResultSet rs = null;
@@ -51,7 +54,8 @@ public class ConnectDB extends AsyncTask<Void, Void, String> {
 			stmt.close();
 			con.close();
 		} catch(Exception e) {
-			text = e.getMessage();
+			//text = e.getMessage();
+			text = "接続エラーです";
 		}
 		return text;
 	}
