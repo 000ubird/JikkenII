@@ -21,7 +21,12 @@ public class ReadNfcActivity extends ActionBarActivity {
 		super.onCreate(savedInstanceState);
 		//レイアウト設定ファイルの指定
 		setContentView(R.layout.activity_read_nfc);
-		
+	}
+
+	@Override
+    protected void onResume() {
+        super.onResume();
+        
         // NFCを扱うためのインスタンスを取得
         nfcAdapter = NfcAdapter.getDefaultAdapter(this);
         // NFCが搭載されているかチェック
@@ -44,7 +49,18 @@ public class ReadNfcActivity extends ActionBarActivity {
                 	"いいえ", 
                 	new DialogInterface.OnClickListener() {
                 	@Override
-                	public void onClick(DialogInterface dialog, int which) {  
+                	public void onClick(DialogInterface dialog, int which){
+                        new AlertDialog.Builder(ReadNfcActivity.this)
+                        .setTitle("本アプリではNFC機能を使用します。アプリを終了します。")
+                        .setNegativeButton(
+                            	"はい", 
+                            	new DialogInterface.OnClickListener() {
+                            	@Override
+                            	public void onClick(DialogInterface dialog, int which){
+                            		finish();
+                            	}
+                            })
+                            .show();
                 	}
                 })
                 .show();
@@ -56,11 +72,7 @@ public class ReadNfcActivity extends ActionBarActivity {
                     "この端末はNFC機能が非搭載です", Toast.LENGTH_SHORT)
                     .show();
         }
-	}
-
-	@Override
-    protected void onResume() {
-        super.onResume();
+        
         if (nfcAdapter != null) {
             // 起動中のActivityが優先的にNFCを受け取れるよう設定
             Intent intent = new Intent(this, this.getClass())
