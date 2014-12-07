@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.widget.Toast;
 
 public class ConnectionActivity extends Activity {
+	private static String sql = "SELECT id,pass FROM test";
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		//スーパークラスのonCreateメソッド呼び出し
@@ -18,7 +20,7 @@ public class ConnectionActivity extends Activity {
 		Toast.makeText(getApplicationContext(),
 			i.getStringExtra("ID"), Toast.LENGTH_SHORT)
 			.show();
-		ConnectDB cDB = new ConnectDB(ConnectionActivity.this);
+		ConnectDB cDB = new ConnectDB(ConnectionActivity.this,sql);
 		cDB.execute();
 	}
 }
