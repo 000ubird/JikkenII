@@ -60,9 +60,11 @@ public class ReadNfcActivity extends ActionBarActivity {
                             		finish();
                             	}
                             })
+                            .setCancelable(false)	//ダイアログ以外の場所のタッチは無効
                             .show();
                 	}
                 })
+                .setCancelable(false)	//ダイアログ以外の場所のタッチは無効
                 .show();
             }
         }
