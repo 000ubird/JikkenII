@@ -4,18 +4,20 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.AsyncTask;
+import android.widget.TextView;
 
 @SuppressLint("NewApi")
 public class ConnectDB extends AsyncTask<Void, Void, String> {
 	private static String URL = "jdbc:mysql://172.29.139.104/db_group_a";
 	private static String USER = "group_a";
 	private static String PASS = "m4we6baq";
-	private static int TIMEOUT = 5;
+	private static int TIMEOUT = 5;		//単位:秒
 	Activity act = null;
-
+	
 	/**
 	 * アクティビティを引数に取ったコンストラクタ
 	 * @param act  アクティビティ
@@ -26,8 +28,8 @@ public class ConnectDB extends AsyncTask<Void, Void, String> {
 	
 	@Override
 	protected void onPreExecute() {
-		//TextView tv = (TextView)this.act.findViewById(R.id.result1);
-		//tv.setText("通信中");
+		TextView tv = (TextView)this.act.findViewById(R.id.textView1);
+		tv.setText("通信中");
 	}
 	
 	@Override
@@ -61,8 +63,8 @@ public class ConnectDB extends AsyncTask<Void, Void, String> {
 	}
 	
 	protected void onPostExecute(String result){
-		//TextView tv = (TextView)this.act.findViewById(R.id.result1);
-		//tv.setText(result);
+		TextView tv = (TextView)this.act.findViewById(R.id.textView1);
+		tv.setText(result);
 	}
 }
 
