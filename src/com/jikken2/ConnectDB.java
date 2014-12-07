@@ -17,6 +17,7 @@ public class ConnectDB extends AsyncTask<Void, Void, String> {
 	private static String PASS = "m4we6baq";
 	private static int TIMEOUT = 5;		//’PˆÊ:•b
 	Activity act = null;
+	private String sql = "";
 	
 	/**
 	 * ƒAƒNƒeƒBƒrƒeƒB‚ğˆø”‚Éæ‚Á‚½ƒRƒ“ƒXƒgƒ‰ƒNƒ^
@@ -24,6 +25,16 @@ public class ConnectDB extends AsyncTask<Void, Void, String> {
 	 */
 	public ConnectDB(Activity act){
 		this.act = act;
+	}
+	
+	/**
+	 * ï¿½Aï¿½Nï¿½eï¿½Bï¿½rï¿½eï¿½Bï¿½Æï¿½ï¿½sï¿½ï¿½ï¿½ï¿½SQLï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Éï¿½ï¿½
+	 * @param act  ï¿½Aï¿½Nï¿½eï¿½Bï¿½rï¿½eï¿½B
+	 * @param sql  ï¿½ï¿½ï¿½sï¿½ï¿½ï¿½ï¿½SQLï¿½ï¿½
+	 */
+	public ConnectDB(Activity act,String sql){
+		this.act = act;
+		this.sql = sql;
 	}
 	
 	@Override
