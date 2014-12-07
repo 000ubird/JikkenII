@@ -7,6 +7,7 @@ import java.sql.Statement;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.widget.TextView;
 
@@ -18,6 +19,7 @@ public class ConnectDB extends AsyncTask<Void, Void, String> {
 	private static int TIMEOUT = 5;		//’PˆÊ:•b
 	Activity act = null;
 	private String sql = "";
+	ProgressDialog dialog;
 	
 	/**
 	 * ƒAƒNƒeƒBƒrƒeƒB‚ğˆø”‚Éæ‚Á‚½ƒRƒ“ƒXƒgƒ‰ƒNƒ^
@@ -28,9 +30,9 @@ public class ConnectDB extends AsyncTask<Void, Void, String> {
 	}
 	
 	/**
-	 * ï¿½Aï¿½Nï¿½eï¿½Bï¿½rï¿½eï¿½Bï¿½Æï¿½ï¿½sï¿½ï¿½ï¿½ï¿½SQLï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Éï¿½ï¿½
-	 * @param act  ï¿½Aï¿½Nï¿½eï¿½Bï¿½rï¿½eï¿½B
-	 * @param sql  ï¿½ï¿½ï¿½sï¿½ï¿½ï¿½ï¿½SQLï¿½ï¿½
+	 * ƒAƒNƒeƒBƒrƒeƒB‚ÆÀs‚·‚éSQL•¶‚ğˆø”‚Éæ‚é
+	 * @param act  ƒAƒNƒeƒBƒrƒeƒB
+	 * @param sql  Às‚·‚éSQL•¶
 	 */
 	public ConnectDB(Activity act,String sql){
 		this.act = act;
@@ -39,8 +41,10 @@ public class ConnectDB extends AsyncTask<Void, Void, String> {
 	
 	@Override
 	protected void onPreExecute() {
-		TextView tv = (TextView)this.act.findViewById(R.id.textView1);
-		tv.setText("’ÊM’†");
+	    // ƒvƒƒOƒŒƒXƒ_ƒCƒAƒƒO‚Ì¶¬
+        this.dialog = new ProgressDialog(this.act);
+        this.dialog.setMessage("’ÊM’†...");  // ƒƒbƒZ[ƒW‚ğƒZƒbƒg
+        this.dialog.show();
 	}
 	
 	@Override
@@ -58,8 +62,9 @@ public class ConnectDB extends AsyncTask<Void, Void, String> {
 			//ƒXƒe[ƒgƒƒ“ƒgƒIƒuƒWƒFƒNƒgì¬
 			Statement stmt = (Statement)con.createStatement();
 			//SQL•¶‚ÌÀs‚Æƒf[ƒ^‚Ìæ“¾
-			rs = stmt.executeQuery("SELECT id,pass FROM test");
-
+			//rs = stmt.executeQuery("SELECT id,pass FROM test");
+			rs = stmt.executeQuery(sql);
+			
 			while(rs.next()){
 				text += "ID : "+rs.getString(1) +" , Pass : "+ rs.getString(2)+"\n";
 			}
@@ -76,6 +81,10 @@ public class ConnectDB extends AsyncTask<Void, Void, String> {
 	protected void onPostExecute(String result){
 		TextView tv = (TextView)this.act.findViewById(R.id.textView1);
 		tv.setText(result);
+		// ƒvƒƒOƒŒƒXƒ_ƒCƒAƒƒO‚ğ•Â‚¶‚é
+        if (this.dialog != null && this.dialog.isShowing()) {
+            this.dialog.dismiss();
+        }
 	}
 }
 
