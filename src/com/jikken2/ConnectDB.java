@@ -13,13 +13,10 @@ import android.widget.TextView;
 
 @SuppressLint("NewApi")
 public class ConnectDB extends AsyncTask<Void, Void, String> {
-	private static String URL = "jdbc:mysql://172.29.139.104/db_group_a";
-	private static String USER = "group_a";
-	private static String PASS = "m4we6baq";
 	private static int TIMEOUT = 5;		//単位:秒
-	Activity act = null;
+	private Activity act = null;
 	private String sql = "";
-	ProgressDialog dialog;
+	private ProgressDialog dialog;
 	
 	/**
 	 * アクティビティを引数に取ったコンストラクタ
