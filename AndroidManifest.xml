@@ -60,6 +60,20 @@
             android:label="@string/app_name"
             android:screenOrientation="portrait" >
         </activity>
+        
+        <!-- しのたろう追加部分 -->
+        <activity
+            android:name=".Password"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".PointReduction" >
+        </activity>
+		<!-- しのたろう追加部分終わり-->
     </application>
 
 </manifest>
