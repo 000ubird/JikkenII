@@ -17,6 +17,8 @@ public class ConnectDB extends AsyncTask<Void, Void, String> {
 	private Activity act = null;
 	private String sql = "";
 	private ProgressDialog dialog;
+	private ResultSet rs = null;
+	private String result = "";
 	
 	/**
 	 * アクティビティを引数に取ったコンストラクタ
@@ -34,6 +36,10 @@ public class ConnectDB extends AsyncTask<Void, Void, String> {
 	public ConnectDB(Activity act,String sql){
 		this.act = act;
 		this.sql = sql;
+	}
+	
+	public String getResult(){
+		return result;
 	}
 	
 	@Override
