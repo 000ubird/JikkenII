@@ -19,7 +19,16 @@ public class ConnectDB extends AsyncTask<Void, Void, String> {
 	private ProgressDialog dialog;
 	private ResultSet rs = null;
 	private String result = "";
+	private AsyncTaskCallback callback = null;;
 	
+	//Activiyï¿½Ö‚ÌƒRï¿½[ï¿½ï¿½ï¿½oï¿½bï¿½Nï¿½pinterface
+    public interface AsyncTaskCallback {
+        void preExecute();
+        void postExecute(String result);
+        void progressUpdate(int progress);
+        void cancel();
+    }
+    
 	/**
 	 * ƒAƒNƒeƒBƒrƒeƒB‚ğˆø”‚Éæ‚Á‚½ƒRƒ“ƒXƒgƒ‰ƒNƒ^
 	 * @param act  ƒAƒNƒeƒBƒrƒeƒB
