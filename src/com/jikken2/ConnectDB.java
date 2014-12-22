@@ -13,6 +13,9 @@ import android.widget.TextView;
 
 @SuppressLint("NewApi")
 public class ConnectDB extends AsyncTask<Void, Void, String> {
+	private static String URL = "???";
+	private static String USER = "???";
+	private static String PASS = "???";
 	private static int TIMEOUT = 5;		//単位:秒
 	private Activity act = null;
 	private String sql = "";
@@ -27,7 +30,7 @@ public class ConnectDB extends AsyncTask<Void, Void, String> {
         void postExecute(String result);
         void progressUpdate(int progress);
         void cancel();
-    }AsyncTaskCallback
+    }
     
 	/**
 	 * アクティビティを引数に取ったコンストラクタ
