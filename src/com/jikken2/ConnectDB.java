@@ -21,13 +21,13 @@ public class ConnectDB extends AsyncTask<Void, Void, String> {
 	private String result = "";
 	private AsyncTaskCallback callback = null;;
 	
-	//Activiyï¿½Ö‚ÌƒRï¿½[ï¿½ï¿½ï¿½oï¿½bï¿½Nï¿½pinterface
+	//Activiy‚Ö‚ÌƒR[ƒ‹ƒoƒbƒN—pinterface
     public interface AsyncTaskCallback {
         void preExecute();
         void postExecute(String result);
         void progressUpdate(int progress);
         void cancel();
-    }
+    }AsyncTaskCallback
     
 	/**
 	 * ƒAƒNƒeƒBƒrƒeƒB‚ğˆø”‚Éæ‚Á‚½ƒRƒ“ƒXƒgƒ‰ƒNƒ^
@@ -47,12 +47,25 @@ public class ConnectDB extends AsyncTask<Void, Void, String> {
 		this.sql = sql;
 	}
 	
+	/**
+	 * ƒAƒNƒeƒBƒrƒeƒB‚ÆÀs‚·‚éSQL•¶‚ğˆø”‚Éæ‚é
+	 * @param act  ƒAƒNƒeƒBƒrƒeƒB
+	 * @param sql  Às‚·‚éSQL•¶
+	 */
+	public ConnectDB(Activity act,String sql,AsyncTaskCallback _callback){
+		this.act = act;
+		this.sql = sql;
+	    this.callback = _callback;
+	}
 	public String getResult(){
 		return result;
 	}
 	
 	@Override
 	protected void onPreExecute() {
+		super.onPreExecute();
+        callback.preExecute();
+        
 	    // ƒvƒƒOƒŒƒXƒ_ƒCƒAƒƒO‚Ì¶¬
         this.dialog = new ProgressDialog(this.act);
         this.dialog.setMessage("’ÊM’†...");  // ƒƒbƒZ[ƒW‚ğƒZƒbƒg
@@ -69,28 +82,43 @@ public class ConnectDB extends AsyncTask<Void, Void, String> {
 			DriverManager.setLoginTimeout(TIMEOUT);
 			//ƒf[ƒ^ƒx[ƒX‚ÉÚ‘±
 			Connection con = DriverManager.getConnection(URL,USER,PASS);
-			ResultSet rs = null;
 
 			//ƒXƒe[ƒgƒƒ“ƒgƒIƒuƒWƒFƒNƒgì¬
 			Statement stmt = (Statement)con.createStatement();
 			//SQL•¶‚ÌÀs‚Æƒf[ƒ^‚Ìæ“¾
-			//rs = stmt.executeQuery("SELECT id,pass FROM test");
-			rs = stmt.executeQuery(sql);
+			String[] strAry = sql.split(" ");
 			
-			while(rs.next()){
-				text += "ID : "+rs.getString(1) +" , Pass : "+ rs.getString(2)+"\n";
+			//SQL•¶‚ÌÅ‰‚Ì–½—ß•¶‚ÅğŒ•ªŠò
+			switch(strAry[0]){
+			case "SELECT" : 
+				rs = stmt.executeQuery(sql);
+				while(rs.next()){
+					result += rs.getString(1)+"\n";
+					text += rs.getString(1);
+				}
+				break;
+			case "INSERT" :
+				stmt.executeUpdate(sql);
+				break;
+			case "UPDATE" : 
+				stmt.executeUpdate(sql);
+				break;
 			}
+			
 			rs.close();
 			stmt.close();
 			con.close();
 		} catch(Exception e) {
 			//text = e.getMessage();
 			text = "Ú‘±ƒGƒ‰[‚Å‚·";
+			result = "Ú‘±ƒGƒ‰[‚Å‚·";
 		}
 		return text;
 	}
 	
 	protected void onPostExecute(String result){
+		super.onPostExecute(result);
+        callback.postExecute(result);
 		TextView tv = (TextView)this.act.findViewById(R.id.textView1);
 		tv.setText(result);
 		// ƒvƒƒOƒŒƒXƒ_ƒCƒAƒƒO‚ğ•Â‚¶‚é
