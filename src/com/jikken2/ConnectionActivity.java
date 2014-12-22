@@ -51,6 +51,8 @@ public class ConnectionActivity extends Activity implements AsyncTaskCallback{
 			Toast.makeText(getApplicationContext(),
 					"í êMê¨å˜Å®"+r, Toast.LENGTH_SHORT)
 					.show();
+            Intent i = new Intent(ConnectionActivity.this,Password.class);
+            startActivity(i);
 		}
 	}
 	public void progressUpdate(int progress) {
