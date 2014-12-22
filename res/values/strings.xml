@@ -6,5 +6,12 @@
     
     <!-- NFC読み取りクラス -->
     <string name="nfc_read_plz_touch_nfc">ICカードをタッチして下さい</string>
-
+    <string-array name="list">
+        <item>500</item>
+        <item>1000</item>
+        <item>2000</item>
+  	    <item>3000</item>
+        <item>5000</item>
+        <item>10000</item>
+    </string-array>
 </resources>
