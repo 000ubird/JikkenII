@@ -10,10 +10,16 @@
     <!-- サインアップクラス -->
     <string name="sign_up_button">登録 </string>
     <string name="sign_up_text">登録するパスワードを\n入力して下さい</string>
-    <string name="sign_up_edit_text_1"> 新規パスワード </string>
-    <string name="sign_up_edit_text_2"> 新規パスワード\n(確認用) </string>
-    <string name="warning"> 半角英数、4文字以上 32文字以下のパスワードを入力して下さい</string>
-       
+    <string name="sign_up_edit_text_1">新規パスワード </string>
+    <string name="sign_up_edit_text_2">新規パスワード\n(確認用)</string>
+    <string name="warning">半角英数、4文字以上 32文字以下のパスワードを入力して下さい</string>
+     
+    <!-- ログインクラス -->
+    <string name="login_text_1">ログインします。\nパスワードを入力して下さい</string>
+    <string name="login_text_2">あなたのID : </string>
+    <string name="login_text_3">パスワード </string>
+    <string name="login_button_1">ログイン </string>
+     
     <!-- ポイントクラス -->
     <string-array name="list">
         <item>500</item>
