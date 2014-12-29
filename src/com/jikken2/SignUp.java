@@ -83,8 +83,21 @@ public class SignUp extends Activity implements AsyncTaskCallback{
 	public void postExecute(String result) {
 		// TODO 自動生成されたメソッド・スタブ
 		String r = cDB.getResult();
-		if(r==null) Toast.makeText(getApplicationContext(),"更新成功", Toast.LENGTH_SHORT).show();
-		else Toast.makeText(getApplicationContext(),"更新失敗", Toast.LENGTH_SHORT).show();
+		if(r==null){
+			Toast.makeText(getApplicationContext(),"更新成功", Toast.LENGTH_SHORT).show();
+		}
+		else {
+			new AlertDialog.Builder(SignUp.this)
+			.setTitle("接続エラーです。NFC読み取り画面に移行します。")
+			.setCancelable(false)	//ダイアログ以外の場所のタッチは無効
+			.setNegativeButton("はい",new DialogInterface.OnClickListener() {
+				@Override
+				public void onClick(DialogInterface dialog, int which){
+		            Intent i = new Intent(SignUp.this,ReadNfcActivity.class);
+		            startActivity(i);
+				}
+			}).show();
+		}
 	}
 
 	@Override
