@@ -9,7 +9,7 @@
     tools:context="com.jikken2.Login$PlaceholderFragment" >
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/login_text_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -19,24 +19,24 @@
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/login_text_2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textView2"
-        android:layout_alignBottom="@+id/textView2"
-        android:layout_alignLeft="@+id/textView1"
+        android:layout_alignBaseline="@+id/login_text_id"
+        android:layout_alignBottom="@+id/login_text_id"
+        android:layout_alignLeft="@+id/login_text_1"
         android:layout_marginLeft="15dp"
         android:text="@string/login_text_2"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/login_text_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView1"
+        android:layout_below="@+id/login_text_1"
         android:layout_marginLeft="24dp"
         android:layout_marginTop="80dp"
-        android:layout_toRightOf="@+id/textView3"
+        android:layout_toRightOf="@+id/login_text_2"
         android:text=""
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -45,7 +45,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/editText1"
-        android:layout_alignLeft="@+id/textView3"
+        android:layout_alignLeft="@+id/login_text_2"
         android:text="@string/login_text_3"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -53,9 +53,9 @@
         android:id="@+id/editText1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView2"
+        android:layout_below="@+id/login_text_id"
         android:layout_marginTop="27dp"
-        android:layout_toRightOf="@+id/textView3"
+        android:layout_toRightOf="@+id/login_text_2"
         android:ems="10"
         android:inputType="textPassword" >
 
@@ -63,7 +63,7 @@
     </EditText>
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/login_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
