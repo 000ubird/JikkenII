@@ -3,6 +3,8 @@ package com.jikken2;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.jikken2.ConnectDB.AsyncTaskCallback;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -15,7 +17,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class SignUp extends Activity {
+public class SignUp extends Activity implements AsyncTaskCallback{
+	private ConnectDB cDB;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		//スーパークラスのonCreateメソッド呼び出し
@@ -39,7 +42,8 @@ public class SignUp extends Activity {
 				
 			//2つのパスワードが正しいかつ一致すればデータベースに登録
 			if(isCorrectPass(password1) && isCorrectPass(password2) && password1.equals(password2)){
-				Toast.makeText(getApplicationContext(),"正しい", Toast.LENGTH_SHORT).show();
+				cDB = new ConnectDB(SignUp.this,"UPDATE test SET pass = \""+password1+"\" WHERE id = \"user3\";",SignUp.this);
+				cDB.execute();
 			}
 			//正しくなければダイアログを表示
 			else{
@@ -71,4 +75,21 @@ public class SignUp extends Activity {
 			 return false;
 		}
 	}
+
+	@Override
+	public void preExecute() {}
+
+	@Override
+	public void postExecute(String result) {
+		// TODO 自動生成されたメソッド・スタブ
+		String r = cDB.getResult();
+		if(r==null) Toast.makeText(getApplicationContext(),"更新成功", Toast.LENGTH_SHORT).show();
+		else Toast.makeText(getApplicationContext(),"更新失敗", Toast.LENGTH_SHORT).show();
+	}
+
+	@Override
+	public void progressUpdate(int progress) {}
+
+	@Override
+	public void cancel() {}
 }
