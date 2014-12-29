@@ -17,16 +17,6 @@
         android:layout_marginBottom="63dp"
         android:text="@string/sign_up_button" />
 
-    <TextView
-        android:id="@+id/sign_up_order_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="46dp"
-        android:text="@string/sign_up_text"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
     <EditText
         android:id="@+id/sign_up_password_2"
         android:layout_width="wrap_content"
@@ -67,5 +57,26 @@
         android:layout_alignLeft="@+id/TextView01"
         android:text="@string/sign_up_edit_text_1"
         android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/sign_up_order_text"
+        android:layout_below="@+id/sign_up_order_text"
+        android:layout_marginTop="16dp"
+        android:text="@string/warning"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="@color/red" />
+
+    <TextView
+        android:id="@+id/sign_up_order_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="31dp"
+        android:text="@string/sign_up_text"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
 </RelativeLayout>

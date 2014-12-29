@@ -10,7 +10,6 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -54,7 +53,7 @@ public class SignUp extends Activity implements AsyncTaskCallback{
 			//正しくなければダイアログを表示
 			else{
 				new AlertDialog.Builder(SignUp.this)
-				.setMessage("パスワードが正しくありません。再入力して下さい。")
+				.setMessage("正しいパスワードを入力して下さい。")
 				.setCancelable(false)
 				.setPositiveButton("確認", new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int id) {
