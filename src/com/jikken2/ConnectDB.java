@@ -77,7 +77,6 @@ public class ConnectDB extends AsyncTask<Void, Void, String> {
 	
 	@Override
 	protected String doInBackground(Void... arg0) {
-		String text = "";
 		try {
 			//JDBCドライバのロード
 			Class.forName("com.mysql.jdbc.Driver");
@@ -96,8 +95,7 @@ public class ConnectDB extends AsyncTask<Void, Void, String> {
 			case "SELECT" : 
 				rs = stmt.executeQuery(sql);
 				while(rs.next()){
-					result += rs.getString(1)+"\n";
-					text += rs.getString(1);
+					result += rs.getString(1);
 				}
 				break;
 			case "INSERT" :
@@ -112,18 +110,18 @@ public class ConnectDB extends AsyncTask<Void, Void, String> {
 			stmt.close();
 			con.close();
 		} catch(Exception e) {
-			//text = e.getMessage();
-			text = "接続エラーです";
-			result = "接続エラーです";
+			result = e.getMessage();
+			//接続エラー文字列がnullで無ければ接続エラー
+			if(result!=null){
+				result = "接続エラーです";
+			}
 		}
-		return text;
+		return result;
 	}
 	
 	protected void onPostExecute(String result){
 		super.onPostExecute(result);
         callback.postExecute(result);
-		TextView tv = (TextView)this.act.findViewById(R.id.textView1);
-		tv.setText(result);
 		// プログレスダイアログを閉じる
         if (this.dialog != null && this.dialog.isShowing()) {
             this.dialog.dismiss();
