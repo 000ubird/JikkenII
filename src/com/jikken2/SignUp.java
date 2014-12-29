@@ -1,5 +1,8 @@
 package com.jikken2;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
@@ -28,4 +31,20 @@ public class SignUp extends Activity {
 		}
 	}
 	
+	/**
+	 * �p�X���[�h�����������𔻒肷��
+	 * @param password ���肵�����p�X���[�h
+	 * @return �����̕����񂪔��p�p������4�����ȏ�32�����ȓ�Ȃ�^
+	 */
+	private static boolean isCorrectPass(String password){
+		Pattern p = Pattern.compile("^[0-9a-zA-Z]+$");
+		Matcher m = p.matcher(password);
+		//���p�p������4�����ȏ�32�����ȓ�Ȃ�^
+		if(password.length() >= 4 && password.length() <= 32 && m.find()){
+			return true;
+		}
+		else {
+			 return false;
+		}
+	}
 }
