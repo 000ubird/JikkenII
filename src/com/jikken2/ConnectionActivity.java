@@ -23,6 +23,7 @@ public class ConnectionActivity extends Activity implements AsyncTaskCallback{
 		id = i.getStringExtra("ID");
 		
 		//SQL文を実行
+		//NFCのID情報に対応するパスワードを取得する
 		cDB = new ConnectDB(ConnectionActivity.this,"SELECT pass FROM test WHERE id = '"+id+"';",this);
 		//sql = "INSERT into test(id,pass) values (\""+i.getStringExtra("ID")+"\",\"\");";	//デバッグ
 		//cDB = new ConnectDB(ConnectionActivity.this,"SELECT pass FROM test WHERE id = '"+"user3"+"';",this);	//デバッグ
@@ -56,6 +57,7 @@ public class ConnectionActivity extends Activity implements AsyncTaskCallback{
 					@Override
 					public void onClick(DialogInterface dialog, int which){
 			            Intent i = new Intent(ConnectionActivity.this,SignUp.class);
+			            i.putExtra("ID",id);	//ID情報を次のアクティビティに渡す
 			            startActivity(i);
 					}
 				}).show();
@@ -69,6 +71,7 @@ public class ConnectionActivity extends Activity implements AsyncTaskCallback{
 					@Override
 					public void onClick(DialogInterface dialog, int which){
 			            Intent i = new Intent(ConnectionActivity.this,SignUp.class);
+			            i.putExtra("ID",id);	//ID情報を次のアクティビティに渡す
 			            startActivity(i);
 					}
 				}).show();

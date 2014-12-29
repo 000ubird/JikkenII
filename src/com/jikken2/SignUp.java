@@ -19,6 +19,8 @@ import android.widget.Toast;
 
 public class SignUp extends Activity implements AsyncTaskCallback{
 	private ConnectDB cDB;
+	private String id;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		//スーパークラスのonCreateメソッド呼び出し
@@ -29,6 +31,10 @@ public class SignUp extends Activity implements AsyncTaskCallback{
 		//ボタンオブジェクト取得(戻る)
 		Button button1 = (Button)findViewById(R.id.sign_up_button);
 		button1.setOnClickListener(new ButtonClickListener());
+		
+		//前のアクティビティからID情報を取得
+		Intent i = getIntent();
+		id = i.getStringExtra("ID");
 	}
 	
 	class ButtonClickListener implements OnClickListener{
@@ -42,7 +48,7 @@ public class SignUp extends Activity implements AsyncTaskCallback{
 				
 			//2つのパスワードが正しいかつ一致すればデータベースに登録
 			if(isCorrectPass(password1) && isCorrectPass(password2) && password1.equals(password2)){
-				cDB = new ConnectDB(SignUp.this,"UPDATE test SET pass = \""+password1+"\" WHERE id = \"user3\";",SignUp.this);
+				cDB = new ConnectDB(SignUp.this,"UPDATE test SET pass = \""+password1+"\" WHERE id = \""+id+"\";",SignUp.this);
 				cDB.execute();
 			}
 			//正しくなければダイアログを表示
