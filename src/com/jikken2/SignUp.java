@@ -4,11 +4,16 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class SignUp extends Activity {
 	@Override
@@ -26,20 +31,39 @@ public class SignUp extends Activity {
 	class ButtonClickListener implements OnClickListener{
 		@Override
 		public void onClick(View v) {
-			EditText et = (EditText)findViewById(R.id.sign_up_password);
-			String password = et.toString();
+			//ƒpƒXƒ[ƒh‚ð“ü—Í—“‚©‚ç2‚Â‚ÌƒpƒXƒ[ƒh‚ðŽæ“¾
+			EditText editText1 = (EditText)findViewById(R.id.sign_up_password);
+			EditText editText2 = (EditText)findViewById(R.id.sign_up_password_2);
+			String password1 = editText1.getText().toString();
+			String password2 = editText2.getText().toString();
+				
+			//2‚Â‚ÌƒpƒXƒ[ƒh‚ª³‚µ‚¢‚©‚Âˆê’v‚·‚ê‚Îƒf[ƒ^ƒx[ƒX‚É“o˜^
+			if(isCorrectPass(password1) && isCorrectPass(password2) && password1.equals(password2)){
+				Toast.makeText(getApplicationContext(),"³‚µ‚¢", Toast.LENGTH_SHORT).show();
+			}
+			//³‚µ‚­‚È‚¯‚ê‚Îƒ_ƒCƒAƒƒO‚ð•\Ž¦
+			else{
+				new AlertDialog.Builder(SignUp.this)
+				.setMessage("ƒpƒXƒ[ƒh‚ª³‚µ‚­‚ ‚è‚Ü‚¹‚ñBÄ“ü—Í‚µ‚Ä‰º‚³‚¢B")
+				.setCancelable(false)
+				.setPositiveButton("Šm”F", new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int id) {
+						dialog.cancel();
+					}
+				}).show();
+			}
 		}
 	}
 	
 	/**
-	 * ï¿½pï¿½Xï¿½ï¿½ï¿½[ï¿½hï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ð”»’è‚·ï¿½ï¿½
-	 * @param password ï¿½ï¿½ï¿½è‚µï¿½ï¿½ï¿½ï¿½ï¿½pï¿½Xï¿½ï¿½ï¿½[ï¿½h
-	 * @return ï¿½ï¿½ï¿½ï¿½ï¿½Ì•ï¿½ï¿½ï¿½ï¿½ñ‚ª”ï¿½ï¿½pï¿½pï¿½ï¿½ï¿½ï¿½ï¿½ï¿½4ï¿½ï¿½ï¿½ï¿½ï¿½Èï¿½32ï¿½ï¿½ï¿½ï¿½ï¿½È“ï¿½È‚ï¿½^
+	 * ƒpƒXƒ[ƒh‚ª³‚µ‚¢‚©‚ð”»’è‚·‚é
+	 * @param password ”»’è‚µ‚½‚¢ƒpƒXƒ[ƒh
+	 * @return ˆø”‚Ì•¶Žš—ñ‚ª”¼Šp‰p”‚©‚Â4•¶ŽšˆÈã32•¶ŽšˆÈ“à‚È‚ç^
 	 */
 	private static boolean isCorrectPass(String password){
 		Pattern p = Pattern.compile("^[0-9a-zA-Z]+$");
 		Matcher m = p.matcher(password);
-		//ï¿½ï¿½ï¿½pï¿½pï¿½ï¿½ï¿½ï¿½ï¿½ï¿½4ï¿½ï¿½ï¿½ï¿½ï¿½Èï¿½32ï¿½ï¿½ï¿½ï¿½ï¿½È“ï¿½È‚ï¿½^
+		//”¼Šp‰p”‚©‚Â4•¶ŽšˆÈã32•¶ŽšˆÈ“à‚È‚ç^
 		if(password.length() >= 4 && password.length() <= 32 && m.find()){
 			return true;
 		}
