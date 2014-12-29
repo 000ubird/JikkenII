@@ -8,33 +8,64 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.jikken2.SignUp$PlaceholderFragment" >
 
-    <EditText
-        android:id="@+id/sign_up_password"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="170dp"
-        android:ems="10"
-        android:inputType="textPassword" />
-
     <Button
         android:id="@+id/sign_up_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/sign_up_password"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="62dp"
+        android:layout_marginBottom="63dp"
         android:text="@string/sign_up_button" />
 
     <TextView
         android:id="@+id/sign_up_order_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/sign_up_password"
-        android:layout_alignLeft="@+id/sign_up_password"
-        android:layout_marginBottom="69dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="46dp"
         android:text="@string/sign_up_text"
         android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <EditText
+        android:id="@+id/sign_up_password_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/sign_up_password"
+        android:layout_centerVertical="true"
+        android:ems="10"
+        android:inputType="textPassword" />
+
+    <TextView
+        android:id="@+id/TextView01"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/sign_up_password_2"
+        android:layout_alignBottom="@+id/sign_up_password_2"
+        android:layout_alignParentLeft="true"
+        android:text="@string/sign_up_edit_text_2"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <EditText
+        android:id="@+id/sign_up_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/sign_up_password_2"
+        android:layout_marginBottom="20dp"
+        android:layout_toRightOf="@+id/textView1"
+        android:ems="10"
+        android:inputType="textPassword" >
+
+        <requestFocus />
+    </EditText>
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/sign_up_password"
+        android:layout_alignLeft="@+id/TextView01"
+        android:text="@string/sign_up_edit_text_1"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
 </RelativeLayout>

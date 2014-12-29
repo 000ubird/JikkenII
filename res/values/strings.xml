@@ -9,7 +9,9 @@
     
     <!-- サインアップクラス -->
     <string name="sign_up_button">登録 </string>
-    <string name="sign_up_text">登録するパスワードを\n入力して下さい</string>
+    <string name="sign_up_text">登録するパスワードを入力して下さい</string>
+    <string name="sign_up_edit_text_1"> 新規パスワード </string>
+    <string name="sign_up_edit_text_2"> 新規パスワード\n(確認用) </string>
     
     <!-- ポイントクラス -->
     <string-array name="list">
