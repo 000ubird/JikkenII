@@ -7,9 +7,11 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class Login extends Activity {
-	private String id;
+	private String id;		//前のアクティビティから受け取るID情報
+	private String pass;	//前のアクティビティから受け取るパスワード情報
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +27,7 @@ public class Login extends Activity {
 		//前のアクティビティからID情報を取得しテキストビューに表示
 		Intent i = getIntent();
 		id = i.getStringExtra("ID");
+		pass = i.getStringExtra("PASS");
 		TextView loginId = (TextView) findViewById(R.id.login_text_id);
 		loginId.setText(id);
 		loginId.setTextColor(0xffff0000);
@@ -33,7 +36,7 @@ public class Login extends Activity {
 	class ButtonClickListener implements OnClickListener{
 		@Override
 		public void onClick(View v) {
-			finish();
+			Toast.makeText(Login.this, pass, Toast.LENGTH_LONG).show();
 		}
 	}
 }

@@ -33,7 +33,7 @@ public class ConnectionActivity extends Activity implements AsyncTaskCallback{
 	public void preExecute() { }
 	//バックグラウンド処理完了後の処理
 	public void postExecute(String result) {
-		String r = cDB.getResult();
+		final String r = cDB.getResult();
 		if(r.equals("接続エラーです")){
 			new AlertDialog.Builder(ConnectionActivity.this)
 			.setTitle("接続エラーです。NFC読み取り画面に移行します。")
@@ -72,6 +72,7 @@ public class ConnectionActivity extends Activity implements AsyncTaskCallback{
 					public void onClick(DialogInterface dialog, int which){
 			            Intent i = new Intent(ConnectionActivity.this,Login.class);
 			            i.putExtra("ID",id);	//ID情報を次のアクティビティに渡す
+			            i.putExtra("PASS", r);	//パスワードを次のアクティビティに渡す
 			            startActivity(i);
 					}
 				}).show();
