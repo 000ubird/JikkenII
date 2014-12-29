@@ -6,6 +6,12 @@
     
     <!-- NFC読み取りクラス -->
     <string name="nfc_read_plz_touch_nfc">ICカードをタッチして下さい</string>
+    
+    <!-- サインアップクラス -->
+    <string name="sign_up_button">登録 </string>
+    <string name="sign_up_text">登録するパスワードを\n入力して下さい</string>
+    
+    <!-- ポイントクラス -->
     <string-array name="list">
         <item>500</item>
         <item>1000</item>
