@@ -20,6 +20,7 @@ import android.widget.Toast;
 public class SignUp extends Activity implements AsyncTaskCallback{
 	private ConnectDB cDB;
 	private String id;
+	private String pass;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +49,7 @@ public class SignUp extends Activity implements AsyncTaskCallback{
 				
 			//2つのパスワードが正しいかつ一致すればデータベースに登録
 			if(isCorrectPass(password1) && isCorrectPass(password2) && password1.equals(password2)){
+				pass = password1;
 				cDB = new ConnectDB(SignUp.this,"UPDATE test SET pass = \""+password1+"\" WHERE id = \""+id+"\";",SignUp.this);
 				cDB.execute();
 			}
@@ -97,10 +99,20 @@ public class SignUp extends Activity implements AsyncTaskCallback{
 
 	@Override
 	public void postExecute(String result) {
-		// TODO 自動生成されたメソッド・スタブ
 		String r = cDB.getResult();
 		if(r==null){
-			Toast.makeText(getApplicationContext(),"更新成功", Toast.LENGTH_SHORT).show();
+			new AlertDialog.Builder(SignUp.this)
+			.setTitle("登録が完了しました。ログイン画面に移行します。")
+			.setCancelable(false)	//ダイアログ以外の場所のタッチは無効
+			.setNegativeButton("確認",new DialogInterface.OnClickListener() {
+				@Override
+				public void onClick(DialogInterface dialog, int which){
+		            Intent i = new Intent(SignUp.this,Login.class);
+		            i.putExtra("ID",id);	//ID情報を次のアクティビティに渡す
+		            i.putExtra("PASS", pass);	//パスワードを次のアクティビティに渡す
+		            startActivity(i);
+				}
+			}).show();
 		}
 		else {
 			new AlertDialog.Builder(SignUp.this)
