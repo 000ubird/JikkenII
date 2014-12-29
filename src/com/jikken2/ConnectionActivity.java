@@ -48,11 +48,34 @@ public class ConnectionActivity extends Activity implements AsyncTaskCallback{
 					.show();
 		}
 		else {
-			Toast.makeText(getApplicationContext(),
-					"通信成功→"+r, Toast.LENGTH_SHORT)
-					.show();
-            Intent i = new Intent(ConnectionActivity.this,Password.class);
-            startActivity(i);
+			//パスワード情報が無かった場合はパスワード登録画面に遷移
+			if(r.equals("")){
+				new AlertDialog.Builder(ConnectionActivity.this)
+				.setTitle("パスワードが登録されていません。パスワード登録画面に移行します。")
+				.setNegativeButton("はい", new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int which){
+			            Intent i = new Intent(ConnectionActivity.this,SignUp.class);
+			            startActivity(i);
+					}
+				})
+				.setCancelable(false)	//ダイアログ以外の場所のタッチは無効
+				.show();
+			}
+			//パスワード情報が有った場合はログイン画面に遷移
+			else{
+				new AlertDialog.Builder(ConnectionActivity.this)
+				.setTitle("ログイン画面に移行します。")
+				.setNegativeButton("はい", new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int which){
+			            Intent i = new Intent(ConnectionActivity.this,SignUp.class);
+			            startActivity(i);
+					}
+				})
+				.setCancelable(false)	//ダイアログ以外の場所のタッチは無効
+				.show();
+			}
 		}
 	}
 	public void progressUpdate(int progress) {
