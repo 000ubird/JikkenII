@@ -70,7 +70,7 @@ public class ConnectionActivity extends Activity implements AsyncTaskCallback{
 				.setNegativeButton("はい", new DialogInterface.OnClickListener() {
 					@Override
 					public void onClick(DialogInterface dialog, int which){
-			            Intent i = new Intent(ConnectionActivity.this,SignUp.class);
+			            Intent i = new Intent(ConnectionActivity.this,Login.class);
 			            i.putExtra("ID",id);	//ID情報を次のアクティビティに渡す
 			            startActivity(i);
 					}
