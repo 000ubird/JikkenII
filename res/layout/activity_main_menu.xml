@@ -1,0 +1,65 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.jikken2.MainMenu$PlaceholderFragment" >
+
+        <Button
+            android:id="@+id/main_menu_point_Confirm_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView1"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="29dp"
+            android:text="@string/menu_point_button" />
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/main_menu_point_Confirm_button"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="47dp"
+            android:text="@string/menu_text"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <Button
+            android:id="@+id/main_menu_delay_info_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/main_menu_point_Confirm_button"
+            android:layout_below="@+id/main_menu_point_Confirm_button"
+            android:layout_marginTop="20dp"
+            android:text="@string/menu_delay_button" />
+
+        <Button
+            android:id="@+id/main_menu_point_no_sleep_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/main_menu_point_add_button"
+            android:layout_centerHorizontal="true"
+            android:text="@string/menu_no_sleep_button" />
+
+        <Button
+            android:id="@+id/main_menu_point_add_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/main_menu_delay_info_button"
+            android:layout_below="@+id/main_menu_delay_info_button"
+            android:layout_marginTop="14dp"
+            android:text="@string/menu_point_add_button" />
+
+        <Button
+            android:id="@+id/main_menu_change_pass_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/main_menu_point_no_sleep_button"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="24dp"
+            android:text="@string/menu_pass_change_button" />
+
+</RelativeLayout>

@@ -19,7 +19,15 @@
     <string name="login_text_2">あなたのID : </string>
     <string name="login_text_3">パスワード </string>
     <string name="login_button_1">ログイン </string>
-     
+    
+    <!-- メインメニュー -->
+    <string name="menu_point_button">ポイント確認</string>
+    <string name="menu_delay_button">遅延情報確認</string>
+    <string name="menu_point_add_button">ポイント還元</string>
+    <string name="menu_pass_change_button">パスワード変更</string>
+    <string name="menu_no_sleep_button">乗り過ごし防止サービス</string>
+    <string name="menu_text">サービス一覧</string>
+    
     <!-- ポイントクラス -->
     <string-array name="list">
         <item>500</item>
