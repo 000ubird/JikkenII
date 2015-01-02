@@ -6,13 +6,16 @@ import java.io.InputStreamReader;
 
 import com.jikken2.ConnectDB.AsyncTaskCallback;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.widget.Toast;
 import android.content.DialogInterface;
 import android.content.Intent;
 
+@SuppressLint("NewApi")
 public class ConnectionActivity extends Activity implements AsyncTaskCallback{
 	private ConnectDB cDB;
 	private String id = "";
@@ -69,18 +72,43 @@ public class ConnectionActivity extends Activity implements AsyncTaskCallback{
 			}
 			//パスワード情報が有った場合はログイン画面に遷移
 			else{
-				new AlertDialog.Builder(ConnectionActivity.this)
-				.setTitle("ログイン画面に移行します。")
-				.setCancelable(false)	//ダイアログ以外の場所のタッチは無効
-				.setNegativeButton("はい", new DialogInterface.OnClickListener() {
-					@Override
-					public void onClick(DialogInterface dialog, int which){
-			            Intent i = new Intent(ConnectionActivity.this,Login.class);
-			            i.putExtra("ID",id);	//ID情報を次のアクティビティに渡す
-			            i.putExtra("PASS", r);	//パスワードを次のアクティビティに渡す
-			            startActivity(i);
-					}
-				}).show();
+				//起動済みならログインを省略するかをダイアログで表示
+				if(isLaunch("")){
+					new AlertDialog.Builder(ConnectionActivity.this)
+					.setTitle("自動ログインをしますか？")
+					.setPositiveButton("はい",new DialogInterface.OnClickListener() {
+						@Override
+						//はいがクリックされたらトップ画面に遷移する
+						public void onClick(DialogInterface dialog, int which) {
+							Toast.makeText(ConnectionActivity.this,"自動ログインしました", Toast.LENGTH_LONG).show();
+							//startActivity(new Intent().setAction(Settings.ACTION_NFC_SETTINGS));
+						}
+					})
+					.setNegativeButton("いいえ",new DialogInterface.OnClickListener() {
+						@Override
+						//いいえがクリックされたらログイン画面に遷移する
+						public void onClick(DialogInterface dialog, int which) {
+							Intent i = new Intent(ConnectionActivity.this,Login.class);
+							i.putExtra("ID",id);	//ID情報を次のアクティビティに渡す
+							i.putExtra("PASS", r);	//パスワードを次のアクティビティに渡す
+							startActivity(i);
+						}
+					}).show();
+				}
+				else{
+					new AlertDialog.Builder(ConnectionActivity.this)
+					.setTitle("ログイン画面に移行します。")
+					.setCancelable(false)	//ダイアログ以外の場所のタッチは無効
+					.setNegativeButton("はい", new DialogInterface.OnClickListener() {
+						@Override
+						public void onClick(DialogInterface dialog, int which){
+							Intent i = new Intent(ConnectionActivity.this,Login.class);
+							i.putExtra("ID",id);	//ID情報を次のアクティビティに渡す
+							i.putExtra("PASS", r);	//パスワードを次のアクティビティに渡す
+							startActivity(i);
+						}
+					}).show();
+				}
 			}
 		}
 	}
@@ -88,7 +116,7 @@ public class ConnectionActivity extends Activity implements AsyncTaskCallback{
 	public void cancel() { }
 	
 	/**
-	 * assetsディレクトリ内のlog.txtファイルを読み込み、
+	 * assetsディレクトリ内のlaunch.txtファイルを読み込み、
 	 * 引数のIDに対応するIDが本アプリを起動済みかどうかを返す
 	 * @param _id 調べたいID
 	 * @return	起動済みならtrue、初回起動ならfalse
@@ -121,5 +149,15 @@ public class ConnectionActivity extends Activity implements AsyncTaskCallback{
 			Toast.makeText(this,"起動ログの読み込みに失敗しました", Toast.LENGTH_LONG).show();
 			return false;
 		}
+	}
+	
+	@Override
+	public boolean dispatchKeyEvent(KeyEvent event) {
+	    if (event.getAction()==KeyEvent.ACTION_DOWN) {
+	        if(event.getKeyCode() == KeyEvent.KEYCODE_BACK) {
+	            return false;
+	        }
+	    }
+	    return super.dispatchKeyEvent(event);
 	}
 }
