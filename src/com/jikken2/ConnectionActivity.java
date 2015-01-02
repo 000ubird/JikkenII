@@ -1,10 +1,15 @@
 package com.jikken2;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+
 import com.jikken2.ConnectDB.AsyncTaskCallback;
 
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.os.Bundle;
+import android.widget.Toast;
 import android.content.DialogInterface;
 import android.content.Intent;
 
@@ -81,4 +86,40 @@ public class ConnectionActivity extends Activity implements AsyncTaskCallback{
 	}
 	public void progressUpdate(int progress) { }
 	public void cancel() { }
+	
+	/**
+	 * assetsディレクトリ内のlog.txtファイルを読み込み、
+	 * 引数のIDに対応するIDが本アプリを起動済みかどうかを返す
+	 * @param _id 調べたいID
+	 * @return	起動済みならtrue、初回起動ならfalse
+	 */
+	private boolean isLaunch(String _id){
+		InputStream is = null;
+		BufferedReader br = null;
+		String str;
+		String[] strAry = null;
+		_id = "user1";	//デバッグ用
+		try {
+			// assetsフォルダ内の log.txt をオープンする
+			is = this.getAssets().open("launch.txt");
+			br = new BufferedReader(new InputStreamReader(is));
+
+			while ((str = br.readLine()) != null) {
+				strAry = str.split(",");		//読み込む文字列の書式は「ID,起動の有無」
+				if(_id.equals(strAry[0])){		//引数のIDと読み込んだログのIDが一致したらループを抜ける
+					Toast.makeText(this, strAry[0]+" -> "+strAry[1], Toast.LENGTH_LONG).show();
+					break;
+				}
+			}
+			is.close();
+			br.close();
+			
+			//IDに対応する起動の有無が「true」だったら真を返す
+			if(strAry[1].equals("true")) return true;
+			else return false;
+		} catch (Exception e){
+			Toast.makeText(this,"起動ログの読み込みに失敗しました", Toast.LENGTH_LONG).show();
+			return false;
+		}
+	}
 }
