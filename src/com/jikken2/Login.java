@@ -49,7 +49,7 @@ public class Login extends Activity {
 				.setNegativeButton("Ç‚Ç¡ÇΩÇ∫ÅI",new DialogInterface.OnClickListener() {
 					@Override
 					public void onClick(DialogInterface dialog, int which){
-			            Intent i = new Intent(Login.this,ReadNfcActivity.class);
+			            Intent i = new Intent(Login.this,MainMenu.class);
 			            startActivity(i);
 					}
 				}).show();

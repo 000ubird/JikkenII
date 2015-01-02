@@ -81,7 +81,10 @@ public class ConnectionActivity extends Activity implements AsyncTaskCallback{
 						//はいがクリックされたらトップ画面に遷移する
 						public void onClick(DialogInterface dialog, int which) {
 							Toast.makeText(ConnectionActivity.this,"自動ログインしました", Toast.LENGTH_LONG).show();
-							//startActivity(new Intent().setAction(Settings.ACTION_NFC_SETTINGS));
+							Intent i = new Intent(ConnectionActivity.this,MainMenu.class);
+							i.putExtra("ID",id);	//ID情報を次のアクティビティに渡す
+							i.putExtra("PASS", r);	//パスワードを次のアクティビティに渡す
+							startActivity(i);
 						}
 					})
 					.setNegativeButton("いいえ",new DialogInterface.OnClickListener() {
@@ -135,7 +138,7 @@ public class ConnectionActivity extends Activity implements AsyncTaskCallback{
 			while ((str = br.readLine()) != null) {
 				strAry = str.split(",");		//読み込む文字列の書式は「ID,起動の有無」
 				if(_id.equals(strAry[0])){		//引数のIDと読み込んだログのIDが一致したらループを抜ける
-					Toast.makeText(this, strAry[0]+" -> "+strAry[1], Toast.LENGTH_LONG).show();
+					//Toast.makeText(this, strAry[0]+" -> "+strAry[1], Toast.LENGTH_LONG).show();
 					break;
 				}
 			}
