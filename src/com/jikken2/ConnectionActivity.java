@@ -128,7 +128,6 @@ public class ConnectionActivity extends Activity implements AsyncTaskCallback{
 		InputStream is = null;
 		BufferedReader br = null;
 		String str;
-		String[] strAry = null;
 		_id = "user1";	//デバッグ用
 		try {
 			// assetsフォルダ内の log.txt をオープンする
@@ -136,18 +135,12 @@ public class ConnectionActivity extends Activity implements AsyncTaskCallback{
 			br = new BufferedReader(new InputStreamReader(is));
 
 			while ((str = br.readLine()) != null) {
-				strAry = str.split(",");		//読み込む文字列の書式は「ID,起動の有無」
-				if(_id.equals(strAry[0])){		//引数のIDと読み込んだログのIDが一致したらループを抜ける
-					//Toast.makeText(this, strAry[0]+" -> "+strAry[1], Toast.LENGTH_LONG).show();
-					break;
-				}
+				if(str.equals(_id))	return true;
 			}
 			is.close();
 			br.close();
 			
-			//IDに対応する起動の有無が「true」だったら真を返す
-			if(strAry[1].equals("true")) return true;
-			else return false;
+			return false;
 		} catch (Exception e){
 			Toast.makeText(this,"起動ログの読み込みに失敗しました", Toast.LENGTH_LONG).show();
 			return false;
