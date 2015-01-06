@@ -76,6 +76,7 @@ public class ConnectionActivity extends Activity implements AsyncTaskCallback{
 				if(isLaunch("")){
 					new AlertDialog.Builder(ConnectionActivity.this)
 					.setTitle("自動ログインをしますか？")
+					.setCancelable(false)	//ダイアログ以外の場所のタッチは無効
 					.setPositiveButton("はい",new DialogInterface.OnClickListener() {
 						@Override
 						//はいがクリックされたらトップ画面に遷移する
@@ -151,7 +152,7 @@ public class ConnectionActivity extends Activity implements AsyncTaskCallback{
 	public boolean dispatchKeyEvent(KeyEvent event) {
 	    if (event.getAction()==KeyEvent.ACTION_DOWN) {
 	        if(event.getKeyCode() == KeyEvent.KEYCODE_BACK) {
-	            return false;
+	            finish();
 	        }
 	    }
 	    return super.dispatchKeyEvent(event);
