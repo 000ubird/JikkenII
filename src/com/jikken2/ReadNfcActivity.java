@@ -9,6 +9,7 @@ import android.nfc.NfcAdapter;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.v7.app.ActionBarActivity;
+import android.view.KeyEvent;
 import android.widget.Toast;
 
 @SuppressLint("NewApi")
@@ -113,6 +114,29 @@ public class ReadNfcActivity extends ActionBarActivity {
         }
     }
     
+	@Override
+	public boolean dispatchKeyEvent(KeyEvent event) {
+	    if (event.getAction()==KeyEvent.ACTION_DOWN) {
+	        if(event.getKeyCode() == KeyEvent.KEYCODE_BACK) {
+				new AlertDialog.Builder(ReadNfcActivity.this)
+				.setMessage("ƒAƒvƒŠ‚ğI—¹‚µ‚Ü‚·‚©H")
+				.setCancelable(false)
+				.setPositiveButton("‚Í‚¢", new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int id) {
+						moveTaskToBack(true);
+					}
+				})
+				.setNegativeButton("‚¢‚¢‚¦", new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int id) {
+						dialog.cancel();
+					}
+				})
+				.show();
+	        }
+	    }
+	    return super.dispatchKeyEvent(event);
+	}
+	
 	/**
 	 * byteŒ^•Ï”‚ğStringŒ^‚Ì•¶š—ñ‚É•ÏŠ·‚·‚é
 	 * @param idm byteŒ^‚Ìidm•Ï”
