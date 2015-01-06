@@ -87,7 +87,21 @@ public class SignUp extends Activity implements AsyncTaskCallback{
 	public boolean dispatchKeyEvent(KeyEvent event) {
 	    if (event.getAction()==KeyEvent.ACTION_DOWN) {
 	        if(event.getKeyCode() == KeyEvent.KEYCODE_BACK) {
-	            return false;
+				new AlertDialog.Builder(SignUp.this)
+				.setMessage("NFCì«Ç›éÊÇËâÊñ Ç…à⁄ìÆÇµÇ‹Ç∑Ç©ÅH")
+				.setCancelable(false)
+				.setPositiveButton("ÇÕÇ¢", new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int id) {
+						Intent i = new Intent(SignUp.this,ReadNfcActivity.class);
+						startActivity(i);
+					}
+				})
+				.setNegativeButton("Ç¢Ç¢Ç¶", new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int id) {
+						dialog.cancel();
+					}
+				})
+				.show();
 	        }
 	    }
 	    return super.dispatchKeyEvent(event);
