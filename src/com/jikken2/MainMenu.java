@@ -1,8 +1,11 @@
 package com.jikken2;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -32,6 +35,29 @@ public class MainMenu extends Activity {
 		button4.setOnClickListener(new ButtonClickListener());
 		Button button5 = (Button)findViewById(R.id.main_menu_change_pass_button);
 		button5.setOnClickListener(new ButtonClickListener());
+	}
+	
+	@Override
+	public boolean dispatchKeyEvent(KeyEvent event) {
+	    if (event.getAction()==KeyEvent.ACTION_DOWN) {
+	        if(event.getKeyCode() == KeyEvent.KEYCODE_BACK) {
+				new AlertDialog.Builder(MainMenu.this)
+				.setMessage("アプリを終了しますか？")
+				.setCancelable(false)
+				.setPositiveButton("はい", new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int id) {
+						moveTaskToBack(true);
+					}
+				})
+				.setNegativeButton("いいえ", new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int id) {
+						dialog.cancel();
+					}
+				})
+				.show();
+	        }
+	    }
+	    return super.dispatchKeyEvent(event);
 	}
 	
 	//クリックリスナ定義
