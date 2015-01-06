@@ -46,10 +46,12 @@ public class Login extends Activity {
 				new AlertDialog.Builder(Login.this)
 				.setTitle("ログイン成功")
 				.setCancelable(false)	//ダイアログ以外の場所のタッチは無効
-				.setNegativeButton("やったぜ！",new DialogInterface.OnClickListener() {
+				.setNegativeButton("確認",new DialogInterface.OnClickListener() {
 					@Override
 					public void onClick(DialogInterface dialog, int which){
 			            Intent i = new Intent(Login.this,MainMenu.class);
+			            i.putExtra("ID",id);	//ID情報を次のアクティビティに渡す
+			            i.putExtra("PASS", pass);	//パスワードを次のアクティビティに渡す
 			            startActivity(i);
 					}
 				}).show();
