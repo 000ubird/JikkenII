@@ -1,48 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">JikkenII</string>
+    <string name="app_name">Jikken2Master</string>
     <string name="action_settings">Settings</string>
-    
+
     <!-- NFC読み取りクラス -->
     <string name="nfc_read_plz_touch_nfc">ICカードをタッチして下さい</string>
-    
+
     <!-- サインアップクラス -->
     <string name="sign_up_button">登録 </string>
     <string name="sign_up_text">登録するパスワードを\n入力して下さい</string>
     <string name="sign_up_edit_text_1">新規パスワード </string>
     <string name="sign_up_edit_text_2">新規パスワード\n(確認用)</string>
     <string name="warning">半角英数、4文字以上 32文字以下のパスワードを入力して下さい</string>
-     
+
     <!-- ログインクラス -->
     <string name="login_text_1">ログインします。\nパスワードを入力して下さい</string>
     <string name="login_text_2">あなたのID : </string>
     <string name="login_text_3">パスワード </string>
     <string name="login_button_1">ログイン </string>
     <string name="checkbox">次からログインを省略</string>
-    
+
     <!-- メインメニュー -->
-    <string name="menu_point_button">ポイント確認</string>
+    <string name="menu_point_button">総乗車距離</string>
     <string name="menu_delay_button">遅延情報確認</string>
     <string name="menu_point_add_button">ポイント還元</string>
     <string name="menu_pass_change_button">パスワード変更</string>
     <string name="menu_no_sleep_button">乗り過ごし防止サービス</string>
     <string name="menu_text">サービス一覧</string>
-    
+
     <!-- パスワード変更クラス -->
     <string name="change_pass_title">パスワード変更</string>
     <string name="change_pass_id_title">あなたのID</string>
     <string name="change_pass_password_title_1">現在のパスワード</string>
     <string name="change_pass_button_ok">パスワードの変更</string>
     <string name="change_pass_button_back">キャンセル</string>
-     
+
     <!-- ポイントクラス -->
     <string-array name="list">
         <item>500</item>
         <item>1000</item>
         <item>2000</item>
-  	    <item>3000</item>
+        <item>3000</item>
         <item>5000</item>
         <item>10000</item>
     </string-array>
+
+    <!-- きしの -->
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_past_prevention">PastPrevention</string>
+    <string name="title_activity_main">MainActivity</string>
+
+    <string-array name="us_state">
+        <item>上野</item>
+        <item>尾久</item>
+        <item>赤羽</item>
+        <item>浦和</item>
+        <item>さいたま新都心</item>
+        <item>大宮</item>
+        <item>土呂</item>
+        <item>東大宮</item>
+        <item>蓮田</item>
+        <item>白岡</item>
+        <item>新白岡</item>
+        <item>久喜</item>
+        <item>東鷲宮</item>
+        <item>栗橋</item>
+        <item>古河</item>
+        <item>野木</item>
+        <item>間々田</item>
+        <item>小山</item>
+        <item>小金井</item>
+        <item>自治医大</item>
+        <item>石橋</item>
+        <item>雀宮</item>
+        <item>宇都宮</item>
+        <item>岡本</item>
+        <item>宝積寺</item>
+        <item>氏家</item>
+        <item>蒲須坂</item>
+        <item>片岡</item>
+        <item>矢板</item>
+        <item>野崎</item>
+        <item>西那須野</item>
+        <item>那須塩原</item>
+        <item>黒磯</item>
+    </string-array>
+
+    <string name="title_activity_alarm">Alarm</string>
+
 </resources>

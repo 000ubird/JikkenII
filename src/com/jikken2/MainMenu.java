@@ -67,12 +67,24 @@ public class MainMenu extends Activity {
 		public void onClick(View v) {
 			switch (v.getId()) {
 			case R.id.main_menu_point_Confirm_button:
+				Intent i1 = new Intent(MainMenu.this,TotalRideDistance.class);
+	            i1.putExtra("ID",id);	//ID情報を次のアクティビティに渡す
+	            i1.putExtra("PASS", pass);	//パスワードを次のアクティビティに渡す
+				startActivity(i1);
 				break;
 			case R.id.main_menu_delay_info_button:
+				Intent i2 = new Intent(MainMenu.this,DelayInfo.class);
+				startActivity(i2);
 				break;
 			case R.id.main_menu_point_add_button:
+				Intent i3 = new Intent(MainMenu.this,Password.class);
+	            i3.putExtra("ID",id);	//ID情報を次のアクティビティに渡す
+	            i3.putExtra("PASS", pass);	//パスワードを次のアクティビティに渡す
+				startActivity(i3);
 				break;
 			case R.id.main_menu_point_no_sleep_button:
+				Intent i4 = new Intent(MainMenu.this,PastPrevention.class);
+				startActivity(i4);
 				break;
 			case R.id.main_menu_change_pass_button:
 				Intent i = new Intent(MainMenu.this,ChangePassword.class);

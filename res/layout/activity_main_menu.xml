@@ -10,26 +10,16 @@
 
         <Button
             android:id="@+id/main_menu_point_Confirm_button"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/textView1"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="29dp"
             android:text="@string/menu_point_button" />
 
-        <TextView
-            android:id="@+id/textView1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/main_menu_point_Confirm_button"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="47dp"
-            android:text="@string/menu_text"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
-
         <Button
             android:id="@+id/main_menu_delay_info_button"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignLeft="@+id/main_menu_point_Confirm_button"
             android:layout_below="@+id/main_menu_point_Confirm_button"
@@ -37,16 +27,8 @@
             android:text="@string/menu_delay_button" />
 
         <Button
-            android:id="@+id/main_menu_point_no_sleep_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/main_menu_point_add_button"
-            android:layout_centerHorizontal="true"
-            android:text="@string/menu_no_sleep_button" />
-
-        <Button
             android:id="@+id/main_menu_point_add_button"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignLeft="@+id/main_menu_delay_info_button"
             android:layout_below="@+id/main_menu_delay_info_button"
@@ -55,11 +37,30 @@
 
         <Button
             android:id="@+id/main_menu_change_pass_button"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/main_menu_point_no_sleep_button"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="24dp"
             android:text="@string/menu_pass_change_button" />
+
+        <Button
+            android:id="@+id/main_menu_point_no_sleep_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/main_menu_point_add_button"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="17dp"
+            android:text="@string/menu_no_sleep_button" />
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="60dp"
+            android:text="@string/menu_text"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
 
 </RelativeLayout>

@@ -49,7 +49,7 @@ public class SignUp extends Activity implements AsyncTaskCallback{
 			//2つのパスワードが正しいかつ一致すればデータベースに登録
 			if(isCorrectPass(password1) && isCorrectPass(password2) && password1.equals(password2)){
 				pass = password1;
-				cDB = new ConnectDB(SignUp.this,"UPDATE test SET pass = \""+password1+"\" WHERE id = \""+id+"\";",SignUp.this);
+				cDB = new ConnectDB(SignUp.this,"UPDATE userinfo SET password = \""+password1+"\" , TotalDistance = 0 , PointBalance = 0 WHERE id = \""+id+"\";",SignUp.this);
 				cDB.execute();
 			}
 			//正しくなければダイアログを表示

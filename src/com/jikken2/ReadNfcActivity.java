@@ -1,5 +1,8 @@
 package com.jikken2;
 
+import java.util.Formatter;
+import java.util.Locale;
+
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.PendingIntent;
@@ -108,7 +111,8 @@ public class ReadNfcActivity extends ActionBarActivity {
             byte[] idm = intent.getByteArrayExtra(NfcAdapter.EXTRA_ID);
             //IDm文字列をデータベースとのコネクションを行うアクティビティに渡して遷移
             Intent i = new Intent(ReadNfcActivity.this,ConnectionActivity.class);
-            String id =  getIdm(idm);
+            //String id =  getIdm(idm);
+            String id = bytesToHexString(idm);
             i.putExtra("ID",id);
             startActivity(i);
         }
@@ -153,4 +157,19 @@ public class ReadNfcActivity extends ActionBarActivity {
 		}
 		return buf;
 	}
+	
+    /*
+     * バイト列を16進数文字列に変換
+     */
+    public static String bytesToHexString(byte[] bytes) {
+        StringBuilder sb = new StringBuilder(bytes.length * 2);
+ 
+        Formatter formatter = new Formatter(sb);
+        for (byte b : bytes) {
+            formatter.format("%02x", b);
+        }
+        formatter.close();
+ 
+        return sb.toString().toUpperCase(Locale.getDefault());
+    }
 }

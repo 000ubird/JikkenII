@@ -58,7 +58,7 @@ public class Login extends Activity {
 				}).show();
 			}
 			else{
-				Toast.makeText(Login.this, "パスワードが正しくありません。正しいパスワードは"+pass+"ですよ", Toast.LENGTH_LONG).show();	
+				Toast.makeText(Login.this, "パスワードが正しくありません", Toast.LENGTH_LONG).show();	
 			}
 		}
 	}

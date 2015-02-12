@@ -32,7 +32,7 @@ public class ConnectionActivity extends Activity implements AsyncTaskCallback{
 		
 		//SQL文を実行
 		//NFCのID情報に対応するパスワードを取得する
-		cDB = new ConnectDB(ConnectionActivity.this,"SELECT pass FROM test WHERE id = '"+id+"';",this);
+		cDB = new ConnectDB(ConnectionActivity.this,"SELECT password FROM userinfo WHERE id = '"+id+"';",this);
 		//sql = "INSERT into test(id,pass) values (\""+i.getStringExtra("ID")+"\",\"\");";	//デバッグ
 		//cDB = new ConnectDB(ConnectionActivity.this,"SELECT pass FROM test WHERE id = '"+"user3"+"';",this);	//デバッグ
 		cDB.execute();	//バックグラウンド処理開始
